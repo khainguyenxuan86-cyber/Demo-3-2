@@ -17,7 +17,7 @@ const questions = [
     type: "unscramble",
     question: "Put the words in the correct order.",
     image: "images/livingroom.png",
-    words: ["table.", "books", "are", "There", "five", "on"],
+    words: ["table.", "books", "are", "There", "five", "on", "the"],
     answer: ["There", "are", "five", "books", "on", "the", "table."]
   },
 
@@ -26,7 +26,7 @@ const questions = [
     type: "unscramble",
     question: "Put the words in the correct order.",
     image: "images/livingroom.png",
-    words: ["bed.", "laptops", "are", "There", "two", "on"],
+    words: ["bed.", "laptops", "are", "There", "two", "on", "the"],
     answer: ["There", "are", "two", "laptops", "on", "the", "bed."]
   },
 
@@ -36,7 +36,7 @@ const questions = [
     question: "Put the words in the correct order.",
     image: "images/livingroom.png",
     words: ["isn't", "There", "a", "shelf", "lamp", "on", "the"],
-    answer: ["There", "isn't", "a", "lamp", "on", "the", "shelf",]
+    answer: ["There", "isn't", "a", "lamp", "on", "the", "shelf"]
   },
 
     {
