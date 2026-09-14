@@ -405,7 +405,7 @@ function getWritingChecks(question, answer) {
 
   const hasVerb = verbs.length === 0
     ? true
-    : verbs.some(verb => words.includes(normalizeText(verb)));
+    : verbs.some(verb => normalized.includes(normalizeText(verb)));
 
   const hasKeyword = keywords.length === 0
     ? true
