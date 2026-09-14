@@ -1,86 +1,107 @@
 const questions = [
   // =========================
-  // MULTIPLE CHOICE
-  // =========================
-  {
-    id: "mcq1",
-    type: "multipleChoice",
-    question: "What animal is this?",
-    image: "images/cat.png",
-    choices: ["Dog", "Cat", "Bird", "Fish"],
-    answer: "Cat"
-  },
-
-  {
-    id: "mcq2",
-    type: "multipleChoice",
-    question: "What animal is this?",
-    image: "images/dog.png",
-    choices: ["Dog", "Cat", "Bird", "Fish"],
-    answer: "Dog"
-  },
-
-  {
-    id: "mcq3",
-    type: "multipleChoice",
-    question: "What is the past tense of 'go'?",
-    choices: ["Goed", "Went", "Gone", "Going"],
-    answer: "Went"
-  },
-
-  // =========================
   // UNSCRAMBLE
   // =========================
-  {
+
+    {
     id: "unscramble1",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    image: "images/football.png",
-    words: ["football", "I", "every", "play", "Sunday"],
-    answer: ["I", "play", "football", "every", "Sunday"]
+    image: "images/livingroom.png",
+    words: ["living", "There", "a", "is", "chair", "in", "the", "room"],
+    answer: ["There", "is", "a", "chair", "in", "the", "living", "room"]
   },
 
   {
     id: "unscramble2",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    words: ["likes", "She", "books", "reading"],
-    answer: ["She", "likes", "reading", "books"]
+    image: "images/livingroom.png",
+    words: ["table.", "books", "are", "There", "five", "on"],
+    answer: ["There", "are", "five", "books", "on", "the", "table."]
   },
 
+  {
+    id: "unscramble3",
+    type: "unscramble",
+    question: "Put the words in the correct order.",
+    image: "images/livingroom.png",
+    words: ["bed.", "laptops", "are", "There", "two", "on"],
+    answer: ["There", "are", "two", "laptops", "on", "the", "bed."]
+  },
+
+    {
+    id: "unscramble4",
+    type: "unscramble",
+    question: "Put the words in the correct order.",
+    image: "images/livingroom.png",
+    words: ["isn't", "There", "a", "shelf", "lamp", "on", "the"],
+    answer: ["There", "isn't", "a", "lamp", "on", "the", "shelf",]
+  },
+
+    {
+    id: "unscramble5",
+    type: "unscramble",
+    question: "Put the words in the correct order.",
+    image: "images/livingroom.png",
+    words: ["aren't", "There", "bathroom", "any", "tables", "in", "the"],
+    answer: ["There", "aren't", "any", "tables", "in", "the", "bathroom"]
+  },
   // =========================
   // WRITING
   // =========================
   // The checker does NOT require one exact sentence.
   // It checks the structure defined in "requirements".
-  {
+   {
     id: "writing1",
     type: "writing",
     question: "Look at the picture and write one sentence.",
-    image: "images/pizza.png",
-    template: "This is a/an + noun.",
+    image: "images/bedroom.png",
+    template: "There is a/an + noun + in/on .......",
     requirements: {
-      subjects: ["this"],
+      subjects: ["There"],
       verbs: ["is"],
-      keywords: ["pizza"],
+      article: ["a"]
+      preposition: ["in"]
+      keywords: ["desk", "bedroom"],
       punctuation: ".",
-      minWords: 4
+      minWords: 6
     },
-    sampleAnswer: "This is a pizza."
+    sampleAnswer: "There is a desk in the bedroom."
   },
 
   {
     id: "writing2",
     type: "writing",
-    question: "Write one sentence about what you do after school.",
-    template: "I + verb + after school.",
+    question: "Look at the picture and write one sentence.",
+    image: "images/bedroom.png",
+    template: "There are + 'number' + plural noun + in/on .......",
     requirements: {
-      subjects: ["i"],
-      verbs: ["do", "play", "watch", "read", "study", "go", "eat", "help", "practice"],
-      keywords: ["after school"],
+      subjects: ["There"],
+      verbs: ["are"],
+      preposition: ["on"]
+      number: ["two", "2"],
+      keywords: ["pens"],
       punctuation: ".",
-      minWords: 4
+      minWords: 6
     },
-    sampleAnswer: "I do my homework after school."
-  }
+    sampleAnswer: "There are two pens on the desk."
+  },
+
+  {
+    id: "writing3",
+    type: "writing",
+    question: "Look at the picture and write one sentence.",
+    image: "images/bedroom.png",
+    template: "There aren't any + plural noun + in/on .......",
+    requirements: {
+      subjects: ["There"],
+      verbs: ["aren't", "are not"],
+      preposition: ["on"]
+      keywords: ["pictures", "any", "wall"],
+      punctuation: ".",
+      minWords: 6
+    },
+    sampleAnswer: "There aren't any pictures on the wall."
+  },
 ];
