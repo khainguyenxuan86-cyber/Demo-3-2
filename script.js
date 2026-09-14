@@ -413,7 +413,7 @@ function getWritingChecks(question, answer) {
     hasSubject,
     hasVerb,
     hasKeyword,
-    hasAricle,
+    hasArticle,
     hasPreposition,
     hasNumber,
     hasPunctuation,
@@ -435,9 +435,9 @@ function renderWritingChecks(checks) {
     ["Subject", checks.hasSubject],
     ["Verb", checks.hasVerb],
     ["Keyword", checks.hasKeyword],
-    ["Article", checks.hasarticle],
-    ["Number", checks.hasnumber],
-    ["Preposition", checks.haspreposition],
+    ["Article", checks.hasArticle],
+    ["Number", checks.hasNumber],
+    ["Preposition", checks.hasPreposition],
     ["Punctuation", checks.hasPunctuation],
     ["Word count", checks.hasEnoughWords]
   ];
