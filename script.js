@@ -6,6 +6,7 @@ let selectedWords = [];
 let shuffledWords = [];
 let questionFinished = false;
 let mcqAttempts = 0;
+let writingAttempts = 0;
 
 // Breakdown
 const stats = {
@@ -118,6 +119,7 @@ function resetQuestion() {
   shuffledWords = [];
   questionFinished = false;
   mcqAttempts = 0;
+  writingAttempts = 0;
 
   choicesContainer.innerHTML = "";
   wordBank.innerHTML = "";
@@ -513,17 +515,41 @@ function checkWriting(question) {
     return;
   }
 
-  // Wrong writing answer does not end the question.
-  // Show the model and require a rewrite.
-  setFeedback(
-    `${renderWritingChecks(checks)}
-     <div class="writing-retry">
-       <strong>Not quite yet.</strong><br>
-       Sample answer: <strong>${question.sampleAnswer}</strong><br>
-       Please rewrite the sentence and try again.
-     </div>`,
-    "warning"
-  );
+  // Wrong writing answer - increment attempt counter
+  writingAttempts++;
+
+  if (writingAttempts === 1) {
+    setFeedback(
+      `${renderWritingChecks(checks)}
+       <div class="writing-retry">
+         <strong>Not quite yet.</strong><br>
+         Sample answer: <strong>${question.sampleAnswer}</strong><br>
+         Please rewrite the sentence and try again.
+       </div>`,
+      "warning"
+    );
+  } else if (writingAttempts === 2) {
+    setFeedback(
+      `${renderWritingChecks(checks)}
+       <div class="writing-retry">
+         <strong>Keep trying!</strong> You have one more attempt.<br>
+         Sample answer: <strong>${question.sampleAnswer}</strong><br>
+         Please rewrite the sentence.
+       </div>`,
+      "warning"
+    );
+  } else {
+    setFeedback(
+      `${renderWritingChecks(checks)}
+       <div class="writing-retry">
+         <strong>Let's move on.</strong><br>
+         Sample answer: <strong>${question.sampleAnswer}</strong>
+       </div>`,
+      "wrong"
+    );
+
+    finishQuestion("writing", false);
+  }
 
   writingAnswer.focus();
 }
