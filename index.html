@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Learning Practice — Demo 3-1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="game-container">
+
+    <header class="game-header">
+      <div class="header-top">
+        <h1>English learning practice</h1>
+
+        <label class="theme-control">
+          <span>Theme</span>
+          <select id="theme-select" aria-label="Choose theme">
+            <option value="candy">Candy</option>
+            <option value="sky">Sky</option>
+            <option value="mint">Mint</option>
+            <option value="sunshine">Sunshine</option>
+            <option value="lavender">Lavender</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="score-board">
+        <span>⭐ Stars: <strong id="stars">☆☆☆</strong></span>
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Question: <strong id="question-number">1</strong> / <strong id="total-questions">0</strong></span>
+      </div>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar"><div id="progress"></div></div>
+    </div>
+
+    <main class="question-card">
+      <div id="question-type" class="question-type">MULTIPLE CHOICE</div>
+
+      <h2 id="question-text">Loading question...</h2>
+
+      <div id="question-image-container" class="hidden">
+        <img id="question-image" src="" alt="Question image">
+      </div>
+
+      <div id="game-area">
+
+        <div id="choices-container" class="hidden"></div>
+
+        <div id="unscramble-container" class="hidden">
+          <p class="area-label">Word Bank</p>
+          <div class="word-bank" id="word-bank"></div>
+
+          <div class="answer-area">
+            <p class="area-label">Your sentence <span class="small-hint">(click a word to move it back)</span></p>
+            <div id="sentence-area"></div>
+          </div>
+
+          <button id="clear-unscramble" class="secondary-btn">Clear</button>
+        </div>
+
+        <div id="writing-container" class="hidden">
+          <div id="writing-template" class="writing-template"></div>
+          <textarea id="writing-answer" placeholder="Write your sentence here..."></textarea>
+          <p id="writing-note" class="writing-note">
+            Your answer will be checked for subject, verb, keyword, punctuation, and word count.
+          </p>
+        </div>
+      </div>
+
+      <div id="feedback"></div>
+
+      <div class="button-container">
+        <button id="check-btn" class="check-btn">Check Answer</button>
+        <button id="next-btn" class="next-btn hidden">Next Question →</button>
+      </div>
+    </main>
+
+    <div id="result-screen" class="result-screen hidden">
+      <h2>🎉 Game Completed!</h2>
+      <p>Your final score:</p>
+
+      <div class="final-score">
+        <span id="final-score">0</span> / <span id="final-total">0</span>
+      </div>
+
+      <div id="final-stars" class="final-stars">☆☆☆</div>
+
+      <div id="result-breakdown" class="result-breakdown"></div>
+
+      <button id="restart-btn">🔄 Play Again</button>
+    </div>
+
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
