@@ -379,40 +379,64 @@ function loadWriting(question) {
 }
 
 function getWritingChecks(question, answer) {
-  const requirements = question.requirements;
+  const requirements = question.requirements || {};
   const clean = answer.trim();
   const normalized = normalizeText(clean);
   const words = normalized ? normalized.split(" ") : [];
 
-  const hasSubject = requirements.subjects.some(subject =>
-    words.includes(normalizeText(subject))
-  );
+  // Use safe defaults (empty arrays) for missing requirement fields
+  const subjects = requirements.subjects || [];
+  const verbs = requirements.verbs || [];
+  const keywords = requirements.keywords || [];
+  const articles = requirements.article || [];
+  const prepositions = requirements.preposition || [];
+  const numbers = requirements.number || [];
+  const punctuationRequired = typeof requirements.punctuation !== "undefined"
+    ? requirements.punctuation
+    : null;
+  const minWords = typeof requirements.minWords === "number" ? requirements.minWords : 0;
 
-  const hasVerb = requirements.verbs.some(verb =>
-    words.includes(normalizeText(verb))
-  );
+  // If a requirement list is empty/unspecified, treat that check as "not required" (pass)
+  const hasSubject = subjects.length === 0
+    ? true
+    : subjects.some(subject => words.includes(normalizeText(subject)));
 
-  const hasKeyword = requirements.keywords.every(keyword =>
-    normalized.includes(normalizeText(keyword))
-  );
+  const hasVerb = verbs.length === 0
+    ? true
+    : verbs.some(verb => words.includes(normalizeText(verb)));
 
-  const hasArticle = requirements.article.some(article =>
-    normalized.includes(normalizeText(article))
-  );
+  const hasKeyword = keywords.length === 0
+    ? true
+    : keywords.every(keyword => normalized.includes(normalizeText(keyword)));
 
-  const hasPreposition = requirements.preposition.some(preposition =>
-    normalized.includes(normalizeText(preposition))
-  );
+  const hasArticle = articles.length === 0
+    ? true
+    : articles.some(article => normalized.includes(normalizeText(article)));
 
-  const hasNumber = requirements.number.some(number =>
-    words.includes(normalizeText(number))
-  );
+  const hasPreposition = prepositions.length === 0
+    ? true
+    : prepositions.some(preposition => normalized.includes(normalizeText(preposition)));
+
+  const hasNumber = numbers.length === 0
+    ? true
+    : numbers.some(number => words.includes(normalizeText(number)));
 
   const hasPunctuation =
-    clean.endsWith(requirements.punctuation);
+    punctuationRequired === null ? true : clean.endsWith(punctuationRequired);
 
-  const hasEnoughWords =
-    words.length >= requirements.minWords;
+  const hasEnoughWords = words.length >= minWords;
+
+  // also return which checks were actually required so the renderer can show only relevant rows
+  const required = {
+    subject: subjects.length > 0,
+    verb: verbs.length > 0,
+    keyword: keywords.length > 0,
+    article: articles.length > 0,
+    preposition: prepositions.length > 0,
+    number: numbers.length > 0,
+    punctuation: punctuationRequired !== null,
+    wordCount: minWords > 0
+  };
 
   return {
     hasSubject,
@@ -423,6 +447,7 @@ function getWritingChecks(question, answer) {
     hasNumber,
     hasPunctuation,
     hasEnoughWords,
+    required,
     all:
       hasSubject &&
       hasVerb &&
@@ -436,24 +461,32 @@ function getWritingChecks(question, answer) {
 }
 
 function renderWritingChecks(checks) {
-  const items = [
-    ["Subject", checks.hasSubject],
-    ["Verb", checks.hasVerb],
-    ["Keyword", checks.hasKeyword],
-    ["Article", checks.hasArticle],
-    ["Number", checks.hasNumber],
-    ["Preposition", checks.hasPreposition],
-    ["Punctuation", checks.hasPunctuation],
-    ["Word count", checks.hasEnoughWords]
+  // Build only the checks that are required for this question
+  const mapping = [
+    ["Subject", checks.hasSubject, checks.required.subject],
+    ["Verb", checks.hasVerb, checks.required.verb],
+    ["Keyword", checks.hasKeyword, checks.required.keyword],
+    ["Article", checks.hasArticle, checks.required.article],
+    ["Number", checks.hasNumber, checks.required.number],
+    ["Preposition", checks.hasPreposition, checks.required.preposition],
+    ["Punctuation", checks.hasPunctuation, checks.required.punctuation],
+    ["Word count", checks.hasEnoughWords, checks.required.wordCount]
   ];
+
+  const itemsToShow = mapping.filter(([, , required]) => required);
+
+  // If nothing was required (defensive), show a minimal word-count check
+  const items = itemsToShow.length ? itemsToShow : [["Word count", checks.hasEnoughWords, true]];
 
   return `
     <div class="writing-checks">
-      ${items.map(([label, ok]) =>
-        `<span class="${ok ? "check-pass" : "check-fail"}">
-          ${ok ? "✓" : "✗"} ${label}
-        </span>`
-      ).join("")}
+      ${items
+        .map(([label, ok]) =>
+          `<span class="${ok ? "check-pass" : "check-fail"}">
+            ${ok ? "✓" : "✗"} ${label}
+          </span>`
+        )
+        .join("")}
     </div>
   `;
 }
