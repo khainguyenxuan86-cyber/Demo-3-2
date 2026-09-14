@@ -7,7 +7,7 @@ const questions = [
     id: "unscramble1",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    image: "images/livingroom.png",
+    image: "images/chair.png",
     words: ["living", "There", "a", "is", "chair", "in", "the", "room"],
     answer: ["There", "is", "a", "chair", "in", "the", "living", "room"]
   },
@@ -16,7 +16,7 @@ const questions = [
     id: "unscramble2",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    image: "images/livingroom.png",
+    image: "images/books.png",
     words: ["table.", "books", "are", "There", "five", "on", "the"],
     answer: ["There", "are", "five", "books", "on", "the", "table."]
   },
@@ -25,7 +25,7 @@ const questions = [
     id: "unscramble3",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    image: "images/livingroom.png",
+    image: "images/laptops.png",
     words: ["bed.", "laptops", "are", "There", "two", "on", "the"],
     answer: ["There", "are", "two", "laptops", "on", "the", "bed."]
   },
@@ -34,7 +34,7 @@ const questions = [
     id: "unscramble4",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    image: "images/livingroom.png",
+    image: "images/lamp.png",
     words: ["isn't", "There", "a", "shelf", "lamp", "on", "the"],
     answer: ["There", "isn't", "a", "lamp", "on", "the", "shelf"]
   },
@@ -43,7 +43,7 @@ const questions = [
     id: "unscramble5",
     type: "unscramble",
     question: "Put the words in the correct order.",
-    image: "images/livingroom.png",
+    image: "images/bathroom.png",
     words: ["aren't", "There", "bathroom", "any", "tables", "in", "the"],
     answer: ["There", "aren't", "any", "tables", "in", "the", "bathroom"]
   },
@@ -56,7 +56,7 @@ const questions = [
     id: "writing1",
     type: "writing",
     question: "Look at the picture and write one sentence.",
-    image: "images/bedroom.png",
+    image: "images/desk.png",
     template: "There is a/an + noun + in/on .......",
     requirements: {
       subjects: ["There"],
@@ -74,7 +74,7 @@ const questions = [
     id: "writing2",
     type: "writing",
     question: "Look at the picture and write one sentence.",
-    image: "images/bedroom.png",
+    image: "images/pens.png",
     template: "There are + 'number' + plural noun + in/on .......",
     requirements: {
       subjects: ["There"],
@@ -92,7 +92,7 @@ const questions = [
     id: "writing3",
     type: "writing",
     question: "Look at the picture and write one sentence.",
-    image: "images/bedroom.png",
+    image: "images/wall.png",
     template: "There aren't any + plural noun + in/on .......",
     requirements: {
       subjects: ["There"],
