@@ -61,8 +61,8 @@ const questions = [
     requirements: {
       subjects: ["There"],
       verbs: ["is"],
-      article: ["a"]
-      preposition: ["in"]
+      article: ["a"],
+      preposition: ["in"],
       keywords: ["desk", "bedroom"],
       punctuation: ".",
       minWords: 6
@@ -79,7 +79,7 @@ const questions = [
     requirements: {
       subjects: ["There"],
       verbs: ["are"],
-      preposition: ["on"]
+      preposition: ["on"],
       number: ["two", "2"],
       keywords: ["pens"],
       punctuation: ".",
@@ -97,7 +97,7 @@ const questions = [
     requirements: {
       subjects: ["There"],
       verbs: ["aren't", "are not"],
-      preposition: ["on"]
+      preposition: ["on"],
       keywords: ["pictures", "any", "wall"],
       punctuation: ".",
       minWords: 6
