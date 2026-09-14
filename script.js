@@ -396,11 +396,11 @@ function getWritingChecks(question, answer) {
     normalized.includes(normalizeText(keyword))
   );
 
-  const hasArticle = requirements.article.every(article =>
+  const hasArticle = requirements.article.some(article =>
     normalized.includes(normalizeText(article))
   );
 
-  const hasPreposition = requirements.preposition.every(preposition =>
+  const hasPreposition = requirements.preposition.some(preposition =>
     normalized.includes(normalizeText(preposition))
   );
 
