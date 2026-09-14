@@ -399,6 +399,10 @@ function getWritingChecks(question, answer) {
     normalized.includes(normalizeText(preposition))
   );
 
+  const hasnumber = requirements.number.some(number =>
+    words.includes(normalizeText(number))
+  );
+
   const hasPunctuation =
     clean.endsWith(requirements.punctuation);
 
@@ -411,6 +415,7 @@ function getWritingChecks(question, answer) {
     hasKeyword,
     hasarricle,
     haspreposition,
+    hasnumber,
     hasPunctuation,
     hasEnoughWords,
     all:
@@ -418,6 +423,7 @@ function getWritingChecks(question, answer) {
       hasVerb &&
       hasKeyword &&
       hasarticle &&
+      hasnumber &&
       haspreposition &&
       hasPunctuation &&
       hasEnoughWords
@@ -430,6 +436,7 @@ function renderWritingChecks(checks) {
     ["Verb", checks.hasVerb],
     ["Keyword", checks.hasKeyword],
     ["Article", checks.hasarticle],
+    ["Number", checks.hasnumber],
     ["Preposition", checks.haspreposition],
     ["Punctuation", checks.hasPunctuation],
     ["Word count", checks.hasEnoughWords]
