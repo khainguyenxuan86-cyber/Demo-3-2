@@ -51,7 +51,12 @@ const restartBtn = document.getElementById("restart-btn");
 
 const themeSelect = document.getElementById("theme-select");
 
-totalQuestions.textContent = questions.length;
+// FIX #5: Validate questions array exists before using it
+if (typeof questions === "undefined" || !Array.isArray(questions)) {
+  console.error("Error: questions array is not defined or is not an array");
+} else {
+  totalQuestions.textContent = questions.length;
+}
 
 // =========================
 // HELPERS
@@ -59,7 +64,7 @@ totalQuestions.textContent = questions.length;
 function normalizeText(text) {
   return String(text)
     .toLowerCase()
-    .replace(/[’]/g, "'")
+    .replace(/[']/g, "'")
     .replace(/[.,!?;:]+$/g, "")
     .replace(/\s+/g, " ")
     .trim();
@@ -615,12 +620,18 @@ function setTheme(theme) {
   document.body.dataset.theme = safeTheme;
   localStorage.setItem("english-game-theme", safeTheme);
 
-  themeSelect.value = safeTheme;
+  // FIX #2: Add null check before setting themeSelect value
+  if (themeSelect) {
+    themeSelect.value = safeTheme;
+  }
 }
 
-themeSelect.addEventListener("change", event => {
-  setTheme(event.target.value);
-});
+// FIX #2: Add null check before attaching event listener
+if (themeSelect) {
+  themeSelect.addEventListener("change", event => {
+    setTheme(event.target.value);
+  });
+}
 
 setTheme(localStorage.getItem("english-game-theme") || "candy");
 
